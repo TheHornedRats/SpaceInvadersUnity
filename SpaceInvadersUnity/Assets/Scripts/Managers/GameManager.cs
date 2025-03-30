@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int lives = 3;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI gameOverText;
     public PlayerController player;
 
     private void Awake()
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         UpdateUI();
+        gameOverText.gameObject.SetActive(false);
     }
 
     public void AddScore(int amount)
@@ -35,12 +37,30 @@ public class GameManager : MonoBehaviour
 
         if (lives <= 0)
         {
-            Destroy(player.gameObject);
+            EndGame();
         }
         else
         {
             player.ResetPosition();
         }
+    }
+
+    public void ForceGameOver()
+    {
+        lives = 0;
+        UpdateUI();
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        if (player != null)
+        {
+            Destroy(player.gameObject);
+        }
+
+        gameOverText.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     private void UpdateUI()

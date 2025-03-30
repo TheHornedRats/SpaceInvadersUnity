@@ -11,6 +11,7 @@ public class EnemyGroupController : MonoBehaviour
     public float spacing = 1f;
     public float speed = 2f;
     public float moveDownAmount = 0.5f;
+    public float dangerY = -2.5f;
 
     private Vector2 direction = Vector2.right;
 
@@ -25,10 +26,18 @@ public class EnemyGroupController : MonoBehaviour
 
         foreach (Transform enemy in transform)
         {
+            if (enemy == null) continue;
+
             if (enemy.position.x > 8f || enemy.position.x < -8f)
             {
                 direction *= -1;
                 transform.position += Vector3.down * moveDownAmount;
+                break;
+            }
+
+            if (enemy.position.y <= dangerY)
+            {
+                GameManager.Instance.ForceGameOver();
                 break;
             }
         }
