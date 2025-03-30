@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateUI()
     {
-        scoreText.text = "Score: " + score.ToString();
-        livesText.text = "Lives: " + lives.ToString();
+        scoreText.text =  score.ToString();
+        livesText.text = lives.ToString();
     }
 }

@@ -859,6 +859,7 @@ MonoBehaviour:
   lives: 3
   scoreText: {fileID: 429213605}
   livesText: {fileID: 1238425497}
+  gameOverText: {fileID: 466165680}
   player: {fileID: 1231448612}
 --- !u!4 &1054687640
 Transform:
